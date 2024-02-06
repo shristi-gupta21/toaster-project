@@ -11,9 +11,7 @@ function ToastPlayground() {
   const [variant, setVariant] = useState("notice");
   const [message, setMessage] = useState("");
   const [isShow, setIsShow] = useState(false);
-  useEnter((e) => {
-    onClickPopBtn(e);
-  });
+
   const onClickPopBtn = (e) => {
     e.preventDefault();
     setIsShow(true);
@@ -24,7 +22,10 @@ function ToastPlayground() {
   return (
     <div className={styles.wrapper}>
       <header>
-        <img alt="Cute toast mascot" src="../../../assets/toast.png" />
+        <img
+          alt="Cute toast mascot"
+          src={process.env.PUBLIC_URL + "./images/toast.png"}
+        />
         <h1>Toast Playground</h1>
       </header>
       {<ToastShelf />}
