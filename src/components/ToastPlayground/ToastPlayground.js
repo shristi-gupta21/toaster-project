@@ -1,16 +1,19 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import Button from "../Button/Button";
 import styles from "./ToastPlayground.module.css";
 import { ToastContext } from "../ToastProvider/ToastProvider";
 import ToastShelf from "../ToastShelf/ToastShelf";
+import { useEnter } from "../../hooks/use-enter";
 
 const VARIANT_OPTIONS = ["notice", "warning", "success", "error"];
-export const MessageContext = createContext();
 function ToastPlayground() {
-  const { createToast, dismissToast } = useContext(ToastContext);
+  const { createToast } = useContext(ToastContext);
   const [variant, setVariant] = useState("notice");
   const [message, setMessage] = useState("");
   const [isShow, setIsShow] = useState(false);
+  useEnter((e) => {
+    onClickPopBtn(e);
+  });
   const onClickPopBtn = (e) => {
     e.preventDefault();
     setIsShow(true);
@@ -18,11 +21,10 @@ function ToastPlayground() {
     setMessage("");
     setVariant("notice");
   };
-  // console.log(messageArr);
   return (
     <div className={styles.wrapper}>
       <header>
-        <img alt="Cute toast mascot" src="/toast.png" />
+        <img alt="Cute toast mascot" src="../../../assets/toast.png" />
         <h1>Toast Playground</h1>
       </header>
       {<ToastShelf />}
