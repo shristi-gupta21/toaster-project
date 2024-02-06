@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
-const useEscapeKey = () => {
-  useEffect((callback) => {
+const useEscapeKey = (callback) => {
+  useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.code === "Escape") {
         callback(e);

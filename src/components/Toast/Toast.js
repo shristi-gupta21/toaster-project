@@ -19,17 +19,7 @@ function Toast({ variant, message, id }) {
   const { setToasts, dismissToast } = useContext(ToastContext);
   const Tag = variant ? ICONS_BY_VARIANT[variant] : ICONS_BY_VARIANT["notice"];
   console.log(id);
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.code === "Escape") {
-        setToasts([]);
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [id]);
+
   return (
     <div className={`${styles.toast} ${styles[variant]}`} role="modal">
       <div className={styles.iconContainer}>
