@@ -8,7 +8,7 @@ import { useEnter } from "../../hooks/use-enter";
 const VARIANT_OPTIONS = ["notice", "warning", "success", "error"];
 function ToastPlayground() {
   const { createToast } = useContext(ToastContext);
-  const [variant, setVariant] = useState("notice");
+  const [variant, setVariant] = useState(VARIANT_OPTIONS[0]);
   const [message, setMessage] = useState("");
   const [isShow, setIsShow] = useState(false);
 
@@ -17,7 +17,7 @@ function ToastPlayground() {
     setIsShow(true);
     createToast(message, variant);
     setMessage("");
-    setVariant("notice");
+    setVariant(VARIANT_OPTIONS[0]);
   };
   return (
     <div className={styles.wrapper}>
@@ -51,19 +51,22 @@ function ToastPlayground() {
         <div className={styles.row}>
           <div className={styles.label}>Variant</div>
           <div className={`${styles.inputWrapper} ${styles.radioWrapper}`}>
-            {VARIANT_OPTIONS.map((option) => (
-              <label key={option} htmlFor={`variant-${option}`}>
-                <input
-                  id={`variant-${option}`}
-                  type="radio"
-                  name="variant"
-                  value={option}
-                  onChange={(e) => setVariant(e.target.value)}
-                  checked={variant === option}
-                />
-                {option}
-              </label>
-            ))}
+            {VARIANT_OPTIONS.map((option) => {
+              let id = `variant-${option}`;
+              return (
+                <label key={option} htmlFor={id}>
+                  <input
+                    id={id}
+                    type="radio"
+                    name="variant"
+                    value={option}
+                    onChange={(e) => setVariant(e.target.value)}
+                    checked={variant === option}
+                  />
+                  {option}
+                </label>
+              );
+            })}
           </div>
         </div>
 
