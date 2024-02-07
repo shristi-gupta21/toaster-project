@@ -16,7 +16,7 @@ const ICONS_BY_VARIANT = {
   error: AlertOctagon,
 };
 function Toast({ variant, message, id }) {
-  const { setToasts, dismissToast } = useContext(ToastContext);
+  const { dismissToast } = useContext(ToastContext);
   const Icon = ICONS_BY_VARIANT[variant];
   console.log(id);
 
@@ -25,6 +25,7 @@ function Toast({ variant, message, id }) {
       <div className={styles.iconContainer}>
         <Icon size={24} />
       </div>
+      <VisuallyHidden>{variant}</VisuallyHidden>
       <p className={styles.content}>{message}</p>
 
       <button
@@ -34,7 +35,6 @@ function Toast({ variant, message, id }) {
         aria-level="off"
       >
         <X size={24} />
-        <VisuallyHidden>Dismiss message</VisuallyHidden>
       </button>
     </div>
   );

@@ -1,20 +1,17 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import Button from "../Button/Button";
 import styles from "./ToastPlayground.module.css";
 import { ToastContext } from "../ToastProvider/ToastProvider";
 import ToastShelf from "../ToastShelf/ToastShelf";
-import { useEnter } from "../../hooks/use-enter";
 
 const VARIANT_OPTIONS = ["notice", "warning", "success", "error"];
 function ToastPlayground() {
   const { createToast } = useContext(ToastContext);
   const [variant, setVariant] = useState(VARIANT_OPTIONS[0]);
   const [message, setMessage] = useState("");
-  const [isShow, setIsShow] = useState(false);
 
   const onClickPopBtn = (e) => {
     e.preventDefault();
-    setIsShow(true);
     createToast(message, variant);
     setMessage("");
     setVariant(VARIANT_OPTIONS[0]);
