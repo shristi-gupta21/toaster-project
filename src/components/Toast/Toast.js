@@ -17,13 +17,13 @@ const ICONS_BY_VARIANT = {
 };
 function Toast({ variant, message, id }) {
   const { setToasts, dismissToast } = useContext(ToastContext);
-  const Tag = variant ? ICONS_BY_VARIANT[variant] : ICONS_BY_VARIANT["notice"];
+  const Icon = ICONS_BY_VARIANT[variant];
   console.log(id);
 
   return (
     <div className={`${styles.toast} ${styles[variant]}`} role="modal">
       <div className={styles.iconContainer}>
-        <Tag size={24} />
+        <Icon size={24} />
       </div>
       <p className={styles.content}>{message}</p>
 
